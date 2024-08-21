@@ -1,4 +1,4 @@
-# DevOps deployment of Java Application using Docker
+# Deployment of Java Application using Docker
 
 This project consists of building and deploying the VProfile web application, 
 developed by [hkhcoder](https://github.com/hkhcoder/vprofile-project) using Docker and Docker Compose.
