@@ -1,4 +1,4 @@
-# Deployment of Java Application using Docker
+# Deployment of Java Application using Docker in AWS
 
 This project consists of building and deploying the VProfile web application, 
 developed by [hkhcoder](https://github.com/hkhcoder/vprofile-project) using Docker 
