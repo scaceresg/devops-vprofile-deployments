@@ -21,9 +21,9 @@ following specifications:
 
 * Security group: Inbound rule
 
- - Type: All traffic
+  - Type: All traffic
 
- - Source: My IP
+  - Source: My IP
 
 I ran `sudo apt update` once inside the EC2 instance and checked the specifications 
 using `cat /etc/os-release`:
