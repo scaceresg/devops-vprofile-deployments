@@ -18,6 +18,16 @@ app services
 
 6. Perform final tests
 
+## Project Scaffold
+
+* Custom `Dockerfile` for services (separated in different directories)
+
+* `docker-compose.yml`
+
+* `src` directory
+
+* `pom.xml` file
+
 ## Architecture
 
 ![](docker-aws-ec2.png)
