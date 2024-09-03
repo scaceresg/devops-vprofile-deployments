@@ -5,7 +5,19 @@ developed by [hkhcoder](https://github.com/hkhcoder/vprofile-project) using
 different deployment approaches.
 
 The application is **`vprofile web application`** and is developed in Java
-using JDK 11 or 8 and MySQL 8.
+using JDK 11/8 and contains the following services:
+
+* Web Service: NGINX
+
+* Application Server: Tomcat
+
+* SQL Database: MySQL 8
+
+* DB Memory Caching: Memcached
+
+* Broker/Queuing Agent: RabbitMQ
+
+* Indexing/Search Service: ElasticSearch
 
 I am performing this project as part of my learning process during the
 [DevOps Beginners to Advanced with Projects](https://www.udemy.com/course/decodingdevops/)
