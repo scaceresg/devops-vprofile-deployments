@@ -1,10 +1,4 @@
-# Deployment of Java Application using Docker in AWS
-
-This project consists of building and deploying the VProfile web application, 
-developed by [hkhcoder](https://github.com/hkhcoder/vprofile-project) using Docker 
-and Docker Compose.
-
-The application was developed in Java, using JDK 11 and MySQL 8.
+# Deployment of Java Application using Docker Compose in AWS
 
 ## Initial Settings: AWS EC2 Instance
 
