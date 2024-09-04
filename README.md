@@ -8,7 +8,7 @@ The application is **`vprofile web application`** and is developed in Java
 using JDK 11/8 and contains the following services:
 
 ![Image by Zudonu Osomudeya](https://miro.medium.com/v2/resize:fit:1189/1*cP0KJ_UOjHhUHCdxSDIsCw.png)
-Image by Zudonu Osomudeya
+Image by [Zudonu Osomudeya](https://medium.com/@osomudeyazudonu/project-1-vprofile-project-multi-tier-web-application-stack-setup-locally-59ef7917fc42)
 
 * Web Service: NGINX
 
