@@ -215,3 +215,21 @@ run:
 Use a browser and the EC2 public IP to open the Java application.
 
 ![](./project-imgs/vprofile-app.png)
+
+You can test all the services are working by logging in:
+
+* User and password: `admin_vp`
+
+* Inside the admin user, click on the green buttons: 
+
+   - "RabbitMQ": initiates RabbitMQ
+
+   - "All users": Access MySQL database of users and generates the
+   cache via Memcached.
+
+## Clean Up
+
+* Use `docker compose down` to stop the containers 
+
+* Use `docker system prune -a` to remove all the containers, images,
+networks and cache in the system
