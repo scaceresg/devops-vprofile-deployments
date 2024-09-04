@@ -20,17 +20,17 @@ app services
 
 ## Project Scaffold
 
-* Custom `Dockerfile` for services (separated in different directories)
+* Custom **Dockerfile** for services (separated in different directories)
 
-* `docker-compose.yml`
+* **docker-compose.yml** file
 
-* `src` directory
+* **src**: Directory with Java source code
 
-* `pom.xml` file
+* **pom.xml**: Contains information used by Maven
 
 ## Architecture
 
-![](docker-aws-ec2.png)
+![](./project-imgs/docker-aws-ec2.png)
 
 ## Initial Settings: AWS EC2 Instance
 
@@ -58,22 +58,7 @@ I accessed the EC2 instance using Git Bash:
 Once inside the EC2 instance, I ran `sudo apt update` and checked the 
 specifications using `cat /etc/os-release`:
 
-```
-$ cat /etc/os-release
-PRETTY_NAME="Ubuntu 24.04 LTS"
-NAME="Ubuntu"
-VERSION_ID="24.04"
-VERSION="24.04 LTS (Noble Numbat)"
-VERSION_CODENAME=noble
-ID=ubuntu
-ID_LIKE=debian
-HOME_URL="https://www.ubuntu.com/"
-SUPPORT_URL="https://help.ubuntu.com/"
-BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
-PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
-UBUNTU_CODENAME=noble
-LOGO=ubuntu-logo
-```
+![](./project-imgs/ubuntu-os-release.png)
 
 ## Install Docker Engine
 
@@ -84,32 +69,11 @@ I followed the steps to install Docker Engine for Ubuntu, as mentioned in the
 The final step is verifying the installation process by running 
 `docker run hello-world`:
 
-```
 $ sudo docker run hello-world
 
-Hello from Docker!
-This message shows that your installation appears to be working correctly.
+![](./project-imgs/docker-hello-world.png)
 
-To generate this message, Docker took the following steps:
- 1. The Docker client contacted the Docker daemon.
- 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
-    (amd64)
- 3. The Docker daemon created a new container from that image which runs the
-    executable that produces the output you are currently reading.
- 4. The Docker daemon streamed that output to the Docker client, which sent it
-    to your terminal.
-
-To try something more ambitious, you can run an Ubuntu container with:
- $ docker run -it ubuntu bash
-
-Share images, automate workflows, and more with a free Docker ID:
- https://hub.docker.com/
-
-For more examples and ideas, visit:
- https://docs.docker.com/get-started/
-```
-
-Finally, I added `docker_user` to the `docker` group:
+Finally, I added `$USER` to the `docker` group:
 
 `sudo usermod -aG docker $USER`
 
@@ -117,9 +81,12 @@ Finally, I added `docker_user` to the `docker` group:
 
 I browsed the [Docker Hub webpage](https://hub.docker.com/) and found
 the Base Images for the different services, checking the required 
-specifications for the application:
+specifications for the application in 
+`/src/main/resources/application.properties`:
 
 * MySQL: https://hub.docker.com/_/mysql
+
+   - Container name: `vprodb`
 
    - Tag: `8.0.33`
 
@@ -134,19 +101,31 @@ specifications for the application:
 
 * Memcached: https://hub.docker.com/_/memcached
 
+   - Container name: `vprocache01`
+
    - Port: 11211
 
 * RabbitMQ: https://hub.docker.com/_/rabbitmq
+   
+   - Container name: `vpromq01`
 
    - Add **user** and **password** with a tag **administrator** by 
    setting `RABBITMQ_DEFAULT_USER` and `RABBITMQ_DEFAULT_PASS` environment
    variables
 
-   - Port: 5672
+   - Port: 15672
 
-* Tomcat: 
+* Nginx: https://hub.docker.com/_/nginx
+
+   - Container name: `vproweb`
+
+   - Replace default config file with the application config file
+
+* Tomcat: https://hub.docker.com/_/tomcat
 
    - Tag: `9-jre11`
+
+   - Version: 9 with JDK 11
 
    - Place the artifact inside the container
 
@@ -154,11 +133,13 @@ specifications for the application:
 
    - Port: 8080
 
-* Nginx:
+* JDK: https://hub.docker.com/_/openjdk
 
-   - Replace default config file with the application config file
+   - Tag: `11`
 
-## Fetch the Source Code from GitHub
+   - Version: 11
+
+## Prepare the Environment for the Deployment
 
 ### Adding SSH Keys to GitHub
 
@@ -166,32 +147,71 @@ specifications for the application:
 
 * Add the content in `/home/ubuntu/.ssh/id_rsa.pub` to GitHub SSH Keys
 
-### Clone the application repository
+### Clone the Application Repository
 
 Use `git clone` to clone the source code from the author's repository.
 The author suggests using the branch `containers`:
 
 `git clone -b containers git@github.com:hkhcoder/vprofile-project.git`
 
-Create the **scaffolding** for the project:
+### Add the Project Scaffold
 
-* `Docker-files` directory: Includes the directories where the customised 
+Add the **SCAFFOLD** for the project:
+
+* **Docker-files/** directory: Includes the directories where the customised 
 docker images for the services are placed:
 
-   - `app`: Contains the `Dockerfile` for the app builder (Maven) 
-   and Tomcat
+   - **app/**: Create `Dockerfile` to build the Java app using Maven 
+   and to place the artifact `.war` Tomcat
 
-   - `db`: Contains the `Dockerfile` for running the MySQL service 
-   with the defined environmental variables and the initial database 
+   - **db/**: Create `Dockerfile` to run the MySQL service 
+   setting environmental variables and the initial database 
    `db_backup.sql`
 
-   - `web`: Contains the `Dockerfile` for running the Nginx service
+   - **web/**: Create `Dockerfile` to run the Nginx service
    with the specific app configuration
 
-* `src` directory with the Java source code
+* **src/** directory
 
-* `docker-compose.yml` file which contains the instructions for
-retrieving the base images, the customised images and building the 
-containers
+* **docker-compose.yml** file with the instructions for retrieving 
+the base images, the customised images and building the containers
 
-* `pom.xml` file which indicates the artifact details and versions
+* **pom.xml** file
+
+## Create the `Dockerfile` and `docker-compose.yml` files
+
+* Create the custom `Dockerfile` for the services:
+
+   - MySQL
+
+   - Maven (Builder) and Tomcat
+
+   - Nginx
+
+* Create the `docker-compose.yml` file with the instructions to
+run the base and custom images.
+
+## Containerise with `docker compose`
+
+In the directory where the `docker-compose.yml` file is located,
+run:
+
+* `docker compose build` to build the images
+
+* Check the images list by running `docker images`
+
+![](./project-imgs/docker-images.png)
+
+* Run the containers in the background: `docker compose up -d`
+
+![](./project-imgs/docker-compose-up-result.png)
+
+* Check the running containers: `docker ps`
+
+![](./project-imgs/docker-containers.png)
+
+## Browse the Java Application
+
+Use a browser and the EC2 public IP to open the Java application.
+
+![](./project-imgs/vprofile-app.png)

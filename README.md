@@ -1,7 +1,7 @@
 # Deploying a Java Application: Different Approaches
 
 This project consists of building and deploying the VProfile web application, 
-developed by [hkhcoder](https://github.com/hkhcoder/vprofile-project) using 
+developed by [hkhcoder](https://github.com/devopshydclub/vprofile-project) using 
 different deployment approaches.
 
 The application is **`vprofile web application`** and is developed in Java
