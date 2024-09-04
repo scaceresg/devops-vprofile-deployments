@@ -8,6 +8,7 @@ The application is **`vprofile web application`** and is developed in Java
 using JDK 11/8 and contains the following services:
 
 ![Image by Zudonu Osomudeya](https://miro.medium.com/v2/resize:fit:1189/1*cP0KJ_UOjHhUHCdxSDIsCw.png)
+Image by Zudonu Osomudeya
 
 * Web Service: NGINX
 
@@ -31,7 +32,7 @@ The deployment approaches I used here are:
 
 * Platform as a Service (PaaS): AWS Beanstalk & Amazon RDS
 
-* [Docker Compose in AWS EC2 Instance]()
+* [Docker Compose in AWS EC2 Instance](https://github.com/scaceresg/devops-vprofile-deployments/tree/07d28fb16c45171a737b610769fc50459f3770a8/docker-aws-ec2)
 
 * CI Jenkins Pipeline
 
