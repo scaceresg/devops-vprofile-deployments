@@ -26,7 +26,7 @@ app services
 
 * **src**: Directory with Java source code
 
-* **pom.xml**: Contains information used by Maven
+* **pom.xml**: Contains the application info used by Maven to build the artifact
 
 ## Architecture
 
@@ -152,7 +152,7 @@ specifications for the application in
 Use `git clone` to clone the source code from the author's repository.
 The author suggests using the branch `containers`:
 
-`git clone -b containers git@github.com:hkhcoder/vprofile-project.git`
+`git clone -b containers git@github.com:devopshydclub/vprofile-project.git`
 
 ### Add the Project Scaffold
 
@@ -178,7 +178,7 @@ the base images, the customised images and building the containers
 
 * **pom.xml** file
 
-## Create the `Dockerfile` and `docker-compose.yml` files
+## Create `Dockerfile` and `docker-compose.yml` files
 
 * Create the custom `Dockerfile` for the services:
 
@@ -210,7 +210,7 @@ run:
 
 ![](./project-imgs/docker-containers.png)
 
-## Browse the Java Application
+## Browse the Java Application and "Ta-da!"
 
 Use a browser and the EC2 public IP to open the Java application.
 
