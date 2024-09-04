@@ -1,4 +1,4 @@
-# Deploying a Java Application: Different Approaches
+# Deploying a Java Application using Different Approaches
 
 This project consists of building and deploying the VProfile web application, 
 developed by [hkhcoder](https://github.com/devopshydclub/vprofile-project) using 
@@ -6,6 +6,9 @@ different deployment approaches.
 
 The application is **`vprofile web application`** and is developed in Java
 using JDK 11/8 and contains the following services:
+
+![Image by Zudonu Osomudeya](https://miro.medium.com/v2/resize:fit:1189/1*cP0KJ_UOjHhUHCdxSDIsCw.png)
+Image by [Zudonu Osomudeya](https://medium.com/@osomudeyazudonu/project-1-vprofile-project-multi-tier-web-application-stack-setup-locally-59ef7917fc42)
 
 * Web Service: NGINX
 
@@ -19,7 +22,7 @@ using JDK 11/8 and contains the following services:
 
 * Indexing/Search Service: ElasticSearch
 
-I am performing this project as part of my learning process during the
+I am performing this project as part of my learning process as a student of the
 [DevOps Beginners to Advanced with Projects](https://www.udemy.com/course/decodingdevops/)
 Udemy course.
 
@@ -29,7 +32,7 @@ The deployment approaches I used here are:
 
 * Platform as a Service (PaaS): AWS Beanstalk & Amazon RDS
 
-* Docker Compose
+* [Docker Compose in AWS EC2 Instance](https://github.com/scaceresg/devops-vprofile-deployments/tree/07d28fb16c45171a737b610769fc50459f3770a8/docker-aws-ec2)
 
 * CI Jenkins Pipeline
 
