@@ -1,4 +1,4 @@
-# Deployment of Java Application using Docker Compose in AWS
+# Containerising a Java Application using Docker Compose in AWS
 
 ## General Steps
 
